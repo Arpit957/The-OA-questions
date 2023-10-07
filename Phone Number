@@ -1,6 +1,6 @@
 //Aim:: to convert the given string into its required number
 
-// ex: TWO SIX DOUBLE EIGHT TRIPE FOUR SEVEN
+// ex: TWO SIX DOUBLE EIGHT TRIPLE FOUR SEVEN
 //output : 26884447
 
 #include <bits/stdc++.h>
