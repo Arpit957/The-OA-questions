@@ -1,3 +1,8 @@
+//Aim:: to convert the given string into its required number
+
+// ex: TWO SIX DOUBLE EIGHT TRIPE FOUR SEVEN
+//output : 26884447
+
 #include <bits/stdc++.h>
 using namespace std;
 
