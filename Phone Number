@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+string solve(string phoneNumberInWords) {
+    map<string, int> wordToDigit = {
+        {"zero", 0}, {"one", 1}, {"two", 2}, {"three", 3}, {"four", 4},
+        {"five", 5}, {"six", 6}, {"seven", 7}, {"eight", 8}, {"nine", 9}
+    };
+    
+    stringstream ss(phoneNumberInWords);
+    
+    string digitInWords;
+    string phoneNumberInDigits = "";
+    
+    int cnt=1;
+    while (ss >> digitInWords) {
+        if (wordToDigit.find(digitInWords) != wordToDigit.end()) {
+            while(cnt--){
+            phoneNumberInDigits += to_string(wordToDigit[digitInWords]);
+            }
+            cnt =1;
+        } else if (digitInWords=="double") cnt=2;
+        else if(digitInWords=="triple") cnt=3;
+
+    }
+    
+    return phoneNumberInDigits;
+}
+
+int main(){
+    string word;
+    getline(cin,word);
+
+    string ans=solve(word);
+    cout<<ans<<endl;
+    return 0;
+}
