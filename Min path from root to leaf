@@ -1,0 +1,33 @@
+// we just need to find out the minimum path sum from root to lead node
+// this is not a binary tree
+// one node can have 0 or more than 2 children
+
+#include <iostream>
+#include <vector>
+using namespace std;
+struct Node
+{
+  int cost;
+  vector<Node *> children;
+  Node *parent;
+};
+int getCheapestCost( Node *rootNode )
+{
+    int n = rootNode.children;
+    if (n == 0) {
+        return rootNode->cost;
+    } else {
+        // Initialize minCost to the INT_MAX;
+        int minCost = MAX_INT;
+        for (int i = 0; i < n; ++i) {
+            int tempCost = getCheapestCost(rootNode->children[i]);
+            if (tempCost < minCost) {
+                minCost = tempCost;
+            }
+        }
+        return minCost + rootNode->cost;
+    }
+}
+int main() {
+  return 0;
+}
