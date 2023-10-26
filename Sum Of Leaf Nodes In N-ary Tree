@@ -1,0 +1,45 @@
+// Program to find the sum of leaf nodes of a N-ary tree
+// Tree template
+class TreeNode {
+public:
+    int val; 
+    TreeNode* next;
+    bool canTakeChild;
+    vector<TreeNode*> children;
+
+    // Init constructor
+    TreeNode(int val)
+    :
+    val(val), next(nullptr), canTakeChild(true) {}
+
+    // Init destructor
+    ~TreeNode() {
+        for(auto child : children) {
+            delete child;
+           }
+    }
+};
+
+class Solution {
+public:
+// Recursion - O(N) & O(H)
+    int sumAllLeaves(TreeNode* root) {
+        // Edge case: When the tree is empty.
+        if(!root)
+            return 0;
+
+        // Stores the sum of the leaf nodes.
+        int sum = 0;
+
+        // If current is the leaf node then add its value to the "sum".
+        if(root->children.size() == 0) 
+            sum += root->val;
+
+        // Visit each child one by one.
+        for(auto child : root->children)
+            sum += sumAllLeaves(child);
+        
+        // Return the sum of the leaf nodes
+        return sum; 
+    }
+};
