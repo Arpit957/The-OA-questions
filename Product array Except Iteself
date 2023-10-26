@@ -3,7 +3,7 @@ Given an array arr[] of n integers,
 construct a Product Array prod[] (of the same size)
 such that prod[i] is equal to the product of all the elements of arr[] except arr[i] without using the division.
 */
-
+//Intuit
 class Solution{
   public:
     vector<long long int> productExceptSelf(vector<long long int>& nums, int n) {
