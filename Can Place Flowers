@@ -1,0 +1,49 @@
+//https://leetcode.com/problems/can-place-flowers/description/
+//meta
+class Solution {
+public:
+    bool canPlaceFlowers(vector<int>& flowerbed, int n) {
+    //     int can_put = 0;
+    //     int size = flowerbed.size();
+    //     for(int i = 0; i < size ; i+=2){
+    //         if(flowerbed[i] == 1)
+    //         {
+    //         continue;
+    //         }
+    //         else 
+    //         {
+    //              //can_put++;
+    //              if(i - 1 >=0 and i + 1 < size){
+    //                  if(flowerbed[i-1] == 0 and flowerbed[i+1] == 0){
+    //                      can_put++;
+    //                  }
+    //              }
+    //             if(i - 1 < 0 and i + 1 < size){
+    //                  if(flowerbed[i+1] == 0){
+    //                      can_put++;
+    //                 }
+    //             }
+
+    //               if(i - 1 >=0 and i + 1 > size){
+    //                  if(flowerbed[i-1] == 0){
+    //                      can_put++;
+    //                  }
+    //              }
+    //         }
+    //     }
+    //    // cout<<can_put;
+    //     if(can_put >= n)return 1;
+    //     else return 0;
+    //     return 0;
+        for(int i=0;i<flowerbed.size();i++){
+            if(flowerbed[i]==0){
+        if(( i == 0 || flowerbed[i-1] == 0) and 
+                  (i == flowerbed.size()-1 || flowerbed[i+1] == 0)){
+                    n--;
+                    flowerbed[i]=1;
+                }
+            }
+        }
+        return (n<=0);
+    }
+};
