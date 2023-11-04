@@ -1,0 +1,55 @@
+//kind of spiral matrix
+//Freshworks
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        
+        int row = matrix.size();
+        int col = matrix[0].size();
+        
+        vector<int> ans;
+        int startrow =0;
+        int startcol = 0;
+        int endrow = row-1;
+        int endcol = col-1;
+         //total elements 
+        int total = row *col;
+       //kitne print kar diye
+        int count =0;
+        while(count < total){
+        //print startting row
+        for(int i = startcol;count < total && i<=endcol;i++ ){
+            ans.push_back(matrix[startrow][i]);
+                count++;
+        }
+        //increment the row
+        startrow++;
+        
+        //print ending colummn
+        for(int i =startrow;count < total && i<=endrow;i++){
+            ans.push_back(matrix[i][endcol]);
+            count++;
+        }
+        //decrement the column
+        endcol--;
+        
+        //print last row
+        for(int i = endcol;count < total && i>=startcol;i--){
+            ans.push_back(matrix[endrow][i]);
+            count++;
+        }
+        //decrement last row
+        endrow--;
+        
+        //print startting column
+        for(int i =endrow;count < total&& i>=startrow;i--){
+            ans.push_back(matrix[i][startcol]);
+            count++;
+        }
+        //incremnet column
+           startcol++; 
+            
+        }
+        return ans;
+    }
+};
