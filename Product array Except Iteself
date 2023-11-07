@@ -8,6 +8,7 @@ class Solution{
   public:
     vector<long long int> productExceptSelf(vector<long long int>& nums, int n) {
         //code here        
+     //one should take care of base case when any of the element is zero
          vector<long long> v(n), a(n), b(n);
     a[0]=1;
     b[n-1]=1;
