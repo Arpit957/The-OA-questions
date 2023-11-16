@@ -8,7 +8,6 @@ void dfs(vector<vector<int>>& M, vector<vector<int>>& vis, int i, int j) {
     
         int m = M.size(), n = M[0].size();
         // marked this cell (i, j) as visited
-        // so that we won't visit it again
         vis[i][j] = 1;
     
     
