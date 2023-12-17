@@ -1,0 +1,61 @@
+An address is valid if and only if it is in the form "X.X.X.X", where each X is a number from 0 to 255.
+
+#import <iostream>
+#import <string>
+
+using namespace std;
+
+bool validateIP(const string& ip)
+{
+	// your code goes here
+  // X.X.X.X
+//  range 0 to 255
+    
+    //wrong ip address
+    
+   // 1. no. of dots are more than 3
+    //2. is less than <0 or >255 or is an string
+    
+    int count_of_dots = 0;
+  int n = ip.size();
+  if( n < 3)return false;
+  string s = "";
+  for(int i = 0; i < n ;i++){
+    
+    // i will check out for each and every word in string
+    // if it comes out to be the char then invalid ip
+    if(ip[i] == '.'){
+      count_of_dots++;
+      if(count_of_dots > 3)return false;
+      
+      int num = stoi(s);
+      //maths to convert
+      if(num >= 0 and num <= 255){
+        continue;
+      }
+      else{
+        return false;
+      }
+       s.erase();
+    }
+   // else if(ip[i] >='a' or ip[i]<='z' or ip[i]>='A' or ip[i]) 
+   else if(ip[i] >='0' and ip[i]<='9'){
+      s+=ip[i];
+    }
+    else{
+      return false;
+    }
+  }
+  
+  if(count_of_dots > 3)return false;
+  
+  return true;
+}
+
+int main() 
+{
+  string s = "192.168.0.1";
+  bool val = validateIP(s);
+  cout<<val;
+	return 0;
+}
