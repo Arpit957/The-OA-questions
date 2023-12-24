@@ -1,0 +1,75 @@
+//Ceridian
+//JUST SIMPLE RETURN THE SENTENCE BUT MAKE THEM IN AN ORDER, AS THEY ARE SEPRATED BY THE GAP 
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+vector<char> reverseWords( const vector<char>& arr ) 
+{
+  // your code goes here
+  
+  // given an unjumbled form
+  //naive solution
+  
+  // word 1, word 2, word 3
+   // add up all char in word 
+       // push this in temp vector
+    //prefect , makes , practice
+  
+   //reverse
+//  practice , makes , perfect
+    //traveerse my temp vector
+   // with each string 
+     // take out each n every char
+     // separeate as required
+  // push " ";
+  
+  //resultant output
+  
+  //string lenght s
+  
+  //TC : O(N*s);
+  //SC ; O(N);
+  
+ // N : vector length
+    
+  int n = arr.size();
+  vector<string>temp;
+  string s = "";
+  for(int i = 0 ; i < n ; i++){
+    if(arr[i] == ' '){
+      temp.push_back(s);
+      s = "";
+    }
+    else{
+      s+=arr[i];
+    }
+  }
+  temp.push_back(s);
+  
+  reverse(temp.begin() , temp.end());
+  vector<char>ans;
+  
+  for(string i : temp)
+  {
+    string s = i;
+    for(int j = 0 ; j < s.size() ; j++){
+        ans.push_back(s[j]);
+    }
+    ans.push_back(' ');
+  }
+  ans.pop_back();
+  
+  return ans;
+}
+
+int main() {  
+ //  vector<char>arr = {'p', 'e', 'r', 'f', 'e', 'c', 't', '  ','m', 'a', 'k', 'e', 's', '  ','p', 'r', 'a', 'c', 't', 'i', 'c', 'e'};
+  //  vector<char>temp = reverseWords(arr);
+  //for(int i = 0 ; i < temp.size() ; i++){
+  //  cout<<temp[i];
+  //}
+  //return 0;
+}
