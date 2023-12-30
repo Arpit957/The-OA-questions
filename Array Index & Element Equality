@@ -1,0 +1,74 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int indexEqualsValueSearch(const vector<int> &arr) 
+{
+  // your code goes here
+  // sorted array
+  //1. binary search
+   // naive solution
+    // find the element which is equal to its index
+  //  simple traversal
+  ////  full array
+  //  i == arr[i] 
+     //  store it
+    //    return
+   //  O(N)
+  ////  O(1);
+  /*
+    BS
+     Low = 0;
+      High = N-1
+        mid value :: 
+       is equal return  
+         else if small ::
+          then shift your low
+          else shift your high
+       O(log n)
+       O(1);
+       */
+   int n = arr.size();
+  int low = 0;
+  int high = n - 1;
+  
+   int ans = -1;
+  
+   while( low <= high){
+     int mid = low + (high - low)/2;
+     
+     if(mid == arr[mid]){
+        ans = arr[mid];
+       high = mid -1;
+         
+     }
+     else if(mid > arr[mid]){
+        low = mid + 1;
+     }
+     else{
+       high = mid -1;
+     }
+   }
+  return ans;
+  
+} 
+// i/p =[-1,1,2,3];  
+// mid  = 1;
+  //ans = arr[mid];
+
+//   0 , 1 , 2 
+
+ another approach
+size = 10
+ 0 1 2 3 4 5 6 7 8 9 
+  i % n;
+0 % 10 = 0;
+1 % 10 = 1;
+
+   
+
+int main() {
+  
+  return 0;
+}
