@@ -1,0 +1,52 @@
+Given an array arr of distinct integers and a nonnegative integer k, write a function findPairsWithGivenDifference that returns an array of all pairs [x,y] in arr, such that x - y = k
+Note: the order of the pairs in the output array should maintain the order of the y element in the original array.
+
+#include <iostream>
+#include <vector>
+#include<map>
+#include<algorithm>
+using namespace std;
+
+vector<vector<int>> findPairsWithGivenDifference( const vector<int>& arr, int k) 
+{
+  // your code goes here
+  
+  //Q
+  // Given array
+  //  two indx and elemnet
+   //    whose diff == k
+   //    x - y == k;
+  //Intuition
+  
+  // map;
+ //////  store each one elemt
+//i traverse map
+    // if(found  ele+k){
+     //   i have a pair
+    //      of 1,0 which satisfies the condn  1 - 0 == k
+     //     store this in my ans;
+    // }
+    // TC: 0(n);
+   //SC(O(N));
+  
+ // sort(arr.begin(),arr.end());
+  
+  map<int,int>mp;
+   for(auto x: arr){
+     mp[x-k]=x;
+   }
+  
+  vector<vector<int>>ans;
+  
+  for(auto i:arr){
+    
+     if(mp.find(i) != mp.end()){
+       ans.push_back({mp[i],i});
+     }
+  }
+  return ans;
+}
+
+int main() {
+  return 0;
+}
