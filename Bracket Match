@@ -60,7 +60,7 @@ int bracketMatch( const string& text )
         ans = max(ans,i - st.top());
       else
         st.push(i);
-    }//https://www.linkedin.com/in/a-aayush-891154179/
+    }
   }
   return text.size() - ans;
 }
