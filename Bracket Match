@@ -1,0 +1,68 @@
+#include <iostream>
+#include <string>
+#include<stack>
+
+using namespace std;
+
+int bracketMatch( const string& text ) 
+{
+  // your code goes here
+  //question
+  // o/p 
+ // what is min num of bracket requried to make it pairable
+   // return whatever the bracket left unpaireable
+  
+  
+  //intution
+  /*
+  stack based appraoch
+    keep on pushing
+    
+    the case when i found closing bracket in my string which is mathcing with the stack top
+       there i will pop out
+      keep on popping until the condn fulfiils
+    
+    whatever left in stack will be answer
+    st.size();
+  */
+  /*
+   stack<char>st;
+  
+  st.push(text[0]);
+  
+  for(int i = 1 ; i < text.size() ;i++){
+    
+    if(text[i]==')'){
+          while(!st.empty() and st.top() == '('){
+            st.pop();
+          }
+      }
+     else{
+        st.push(text[i]);
+      }
+  }
+    
+    return st.size();
+  */
+  stack<int>st;
+  st.push(-1);
+  int ans = 0;
+  for(int i = 0; i < text.size();i++){
+    if(text[i]=='('){
+      st.push(i);
+    }
+    else{
+       if(!st.empty()){
+         st.pop();
+       }
+       
+        if(!st.empty())
+        ans = max(ans,i - st.top());
+      else
+        st.push(i);
+    }//https://www.linkedin.com/in/a-aayush-891154179/
+  }
+  return text.size() - ans;
+}
+
+
