@@ -26,16 +26,19 @@ int bracketMatch( const string& text )
     st.size();
   */
   /*
-   stack<char>st;
+     stack<char>st;
   
   st.push(text[0]);
   
   for(int i = 1 ; i < text.size() ;i++){
     
     if(text[i]==')'){
-          while(!st.empty() and st.top() == '('){
+          if(!st.empty() and st.top() == '('){
             st.pop();
           }
+      else{
+        st.push(text[i]);
+      }
       }
      else{
         st.push(text[i]);
