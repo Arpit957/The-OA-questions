@@ -1,0 +1,62 @@
+#include <iostream>
+#include <vector>
+#include<map>
+
+using namespace std;
+
+int getDifferentNumber( const vector<int>& arr ) 
+{
+  // your code goes here
+  
+  /*
+  // 0 1 3 4
+  smallest which not present
+    sort();
+   0 1 3 4
+     size = 4;
+  i%size;
+  0 === 0%4
+ 1 == 1%4
+  3 != 2%4 
+    return 2;
+  
+  test case::
+    -1, 0,2,3
+    -1 != 0%4
+    if(arr[i]<0)continue;
+    return 0;
+  
+   arr.insert(0),2,3;
+   0 , 2 ,3;
+  
+  n logn;
+  n;
+  
+  */
+  /*
+  -16,-12,4,8,0,-4,-2,1,3,5,-1
+   4,8,0,1,3,5
+    
+  set :  0 1 3 4 5 8
+   // 0 1 2
+         0 1 2 
+    
+    0 to MAX_INT
+    return;
+  
+  */
+  map<int,int>mp;
+  for(int i = 0 ; i < arr.size() ; i++){
+    if(arr[i] >=0){
+      mp[arr[i]] = 1;
+    }
+  }
+    int i;
+  for(i = 0 ; i < INT_MAX ;i++){
+       if(mp.find(i) == mp.end()){
+         break;
+         //return i;
+       }
+  }
+  return i;
+}
