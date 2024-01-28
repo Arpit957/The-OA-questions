@@ -1,0 +1,83 @@
+//find the nth root of number x
+
+#include <iostream>
+#include<math.h>
+
+using namespace std;
+double root(double x, unsigned int n) 
+{
+  // your code goes here
+  /*
+  ATQ
+    x 
+    find the nth root of it
+    
+    Intution
+    
+    (x)^a = n;
+  
+  x = 9;
+  n = 2;
+  
+   x = (base)^power = power%n;
+  
+  (9) = (3)^2 = 2%n ==0;
+    return base;
+  
+  for ( 0 to less then x/n);
+      
+      x = 2;
+      n = 9;
+   
+    
+  x = 9
+    n = 2 ;
+  
+  base ^ power = power
+    multiply
+    1/power both sides
+    base = (power)^
+    
+ double   low = 0;
+  double high = x/n;
+  
+  mid
+    
+    if( mid as base ) fulfills condn then would be amswer
+  
+     
+      (high - low > 0.001)
+      
+     Rough 
+      
+      will take the upper limit and lower limit
+      will every mid condn as a root
+      if fullfils that can be possible
+        
+       else if
+         mid ^ power > n
+         upper limit = mid;
+        else low = mid;
+      */
+  
+  
+  double low = 0;
+  double high = x;
+  double mid;
+  while( high - low >= 0.001){
+     mid = (high + low)/2;
+    
+    double b = pow(mid,n);
+      
+    //if(base%n == 0)break;
+     if(b > x)high = mid;
+    else if(b<x)low = mid;
+    else break;
+  }
+      return mid;
+
+}
+
+int main() {
+  return 0;
+}
