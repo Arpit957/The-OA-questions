@@ -1,0 +1,75 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+vector<long> arrayOfArrayProducts(const vector<int>& arr) 
+{
+  //vector<long> res = {};
+
+  // your code goes here
+  /*
+  the main factor will be how many number of 0 we have
+    give tc sizew == 3
+    if 2 zero
+      ans vector 0 , 0 ,
+
+  
+   1 , 2 , 0 , 0
+   0 , 0 , 0, 0
+     
+     the common understanding of the question is
+     
+     if  the number of zeros are > 1;
+  evry elements in my answer vector is 0;
+  
+ 
+  Given tc = 8 , 10 ,2
+    
+    dry run
+    
+    //i = 0
+    ans[i] = product of the array before i and product of the array after i;
+  i =0;
+  ans[i] = 1 * 10 *2 = 20
+    i = 1;
+  ans[i] = 8 * 2 = 16
+    i = 2;
+  ans[i] = 8 *10 *1; = 80
+    
+    prefic product array
+    suffic product array
+    ans[i] = prefix[i] * suffix[i];
+ */
+  long n = arr.size();
+  vector<long>ans(n);
+  if(n == 0)return ans;
+  if(n == 1)return {};
+  //int n = arr.size();
+  vector<long>pre(n);
+  vector<long>suf(n);
+  
+  pre[0] = 1;
+  suf[n-1] = 1;
+  
+  for(long i = 1; i < n;i++){
+    pre[i] = pre[i-1] * arr[i-1];
+  }
+  
+  for(long i = n-2;i>=0;i--){
+    suf[i] = suf[i+1] * arr[i+1];
+  }
+  
+  for(long i = 0;i<n;i++){
+    ans[i] = pre[i] * suf[i];
+  }
+  
+  return ans;
+  
+  TC : O(N) PREFIX +O(N) SUFFIX + O(N) ANSWER = o(n)
+  SC : O(N) +O(N) = O(n);
+}
+
+int main() {
+  return 0;
+}
