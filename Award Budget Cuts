@@ -89,9 +89,6 @@ double findGrantsCap( vector<int> grantsArray, int newBudget )
 }
 
 
-//https://www.linkedin.com/in/shashwatssp
-
-
 int main() {
   return 0;
 }
