@@ -1,0 +1,97 @@
+/*
+Given an array grantsArray of the original grants and the reduced budget newBudget,
+write a function findGrantsCap that finds in the most efficient manner a cap such that the least number of recipients
+is impacted and that the new budget constraint is met (i.e. sum of the N reallocated grants equals to newBudget
+*/
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+double findGrantsCap( vector<int> grantsArray, int newBudget ) 
+{
+  // your code goes here
+   
+  /*
+  // totalgrants < newbudget
+       return first one
+  
+  sort(reverse order);
+  
+  1000 , 120 , 100 , 50 , 2
+   start applying the upper limit from first value
+  
+   if start form first index 
+    from i + 1 to n;
+    total = first_element * (n - i);
+    
+    if(total < newone){
+      remainingone = new;
+      then for 0 to i
+      remaining - arr[i];
+    }
+     return new/n;
+  */
+ /*
+  sort(grantsArray.begin(),grantsArray.end(),greater<double>());
+  double low = 0;
+  double high = grantsArray[0];
+  double cap_require;
+  while(low < high){
+    cap_require = low + (high - low)/2;
+    
+    double total_required = 0;
+    for(int i = 0; i<grantsArray.size();i++){
+        total_required+= min(double(grantsArray[i]),cap_require);
+    }
+    if(total_required <= newBudget){
+      low = cap_require + 1;
+    }
+    else{
+      high = cap_require;
+    }
+  }
+
+  return low - 1;
+  */
+  
+   int n = grantsArray.size();
+    // Sort the array in descending order.
+    std::sort(grantsArray.begin(), grantsArray.end(), std::greater<double>());
+    // Pad the array with a zero at the end to cover the case where 0 <= cap <= grantsArray[i].
+    grantsArray.push_back(0);
+    // Calculate the total amount we need to cut back to meet the reduced budget.
+    double surplus = 0;
+    for (double grant : grantsArray) {
+        surplus += grant;
+    }
+    surplus -= newBudget;
+    // If there is nothing to cut, simply return the highest grant as the cap.
+    if (surplus <= 0) {
+        return grantsArray[0];
+    }
+    // Start subtracting from surplus the differences ("deltas") between consecutive grants
+    // until surplus is less than or equal to zero.
+    // Basically, we are testing out, in order, each of the grants as a potential lower bound for the cap.
+    // Once we find the first value that brings us below zero, we break.
+    int i;
+    for (i = 0; i < n; ++i) {
+        surplus -= (i + 1) * (grantsArray[i] - grantsArray[i + 1]);
+        if (surplus <= 0) {
+            break;
+        }
+    }
+    // Since grantsArray[i+1] is a lower bound to our cap, i.e. grantsArray[i+1] <= cap,
+    // we need to add to grantsArray[i+1] the difference: (-total / float(i+1)),
+    // so the returned value equals exactly to cap.
+    return grantsArray[i + 1] + (-surplus / double(i + 1));
+}
+
+
+//https://www.linkedin.com/in/shashwatssp
+
+
+int main() {
+  return 0;
+}
