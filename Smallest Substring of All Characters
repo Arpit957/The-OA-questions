@@ -1,0 +1,77 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include<map>
+#include<set>
+//#include<bits/stdc++.h>
+
+using namespace std;
+
+string getShortestUniqueSubstring( const vector<char>& arr, const string &str ) 
+{
+  // your code goes here
+    
+  // i have a string 
+  // i have to find a substring 
+  // contain every element of a given array
+  
+  
+  //approch
+  // take a map
+  // will 
+  
+  //deque ??
+  
+  // both  i = 0 and j =0
+  // start with zeroth index of str
+  // keep on add char in my temp string
+  // ex (x+y+y+z.....)
+  // wheter this is our desired string;
+  // map of each and every character of the given string to arr vector
+  // if found the size smaller
+  // return ans;
+  
+  string t = "";
+  for(auto i:arr)t+=i;
+  
+  string s = str;
+ vector<int> mp1(256, 0);
+        vector<int> mp2(256, 0);
+
+        for (int i = 0; i < t.length(); i++)
+            mp1[t[i]]++;
+
+        int j = 0;
+        int index = 0;
+        int len = INT_MAX;
+        int count = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            mp2[s[i]]++;
+            if (mp1[s[i]] >= mp2[s[i]])
+                count++;
+            while (mp2[s[j]] > mp1[s[j]]) {
+                mp2[s[j++]]--;
+            }
+            if (count == t.length()) {
+                int n = i - j + 1;
+                if (len > n) {
+                    index = j;
+                    len = n;
+                }
+            }
+        }
+        string ans = "";
+        if (len == INT_MAX)
+            return ans;
+
+        for (int i = 0; i < len; i++)
+            ans += s[index + i];
+
+        return ans;
+  //cout<<res<<endl;
+}
+
+int main() {
+  return 0;
+}
