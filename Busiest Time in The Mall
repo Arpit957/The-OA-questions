@@ -1,0 +1,70 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+
+/*
+
+In a mall
+at a specific period of time
+  max(no of visitors) present
+  given  a vector (Data)
+  {
+     ele 1 : time stamp of entry or exit
+     ele 2: magnitutde of visitors
+     ele 3: 0(exist) 1(entry)
+  }
+  
+  o/p : Time stamp :: MAX(visitors);
+  
+*/
+
+/*
+
+given the array is sorted according to time
+ data[i][0] :: time : +14
+ data[i][0] :: time :: -4   net = 10(max :: save 425)
+ data[i][0] :: time :: -2  net = 8
+ data[i][0] :: 8 + 10 = 18 (max :: save (378))
+ data[i][0] :: 0 
+  -- > 18 (max :: )
+
+
+*/
+
+//Hey are you there?
+ //// just check your connection
+ // its not showing from my side
+
+//https://www.linkedin.com/in/arpit-tiwari-879166209/
+  
+
+int findBusiestPeriod( const vector<vector<int> >& data ) 
+{
+  // your code goes here
+  int ans = 0;
+  int n = data.size();
+  int curr_visitors = 0;
+  int maxi = INT_MIN;
+  for (int i = 0; i < n; i++) {
+        // update count
+        if (data[i][2] == 1) { // visitors entered the mall  
+            curr_visitors += data[i][1];
+        } else if (data[i][2] == 0) { // visitors exited the mall
+            curr_visitors -= data[i][1];
+        }
+    if (i < n - 1 && data[i][0] == data[i + 1][0]) {
+            continue;
+        }
+    if(curr_visitors > maxi){
+      maxi = curr_visitors;
+      ans = data[i][0];
+    }
+  }
+  return ans;
+}
+
+int main() {
+  return 0;
+}
