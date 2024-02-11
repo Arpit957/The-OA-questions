@@ -1,0 +1,67 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+//flip(Arr,k)
+
+void flipp(vector<int>&temp,int k){
+  int left = 0;
+  int right = k - 1;
+  while(left  < right){
+    swap(temp[left++],temp[right--]);
+  }
+}
+
+int greatestt(vector<int>&temp,int n){
+  int maxi = 0;
+  for(int i = 1;i < n ;i ++){
+    if(temp[i] > temp[maxi]){
+      maxi = i;
+    }
+  }
+  return maxi;
+}
+vector<int> pancakeSort( const vector<int>& arr ) 
+{
+  // your code goes here
+  vector<int>temp;
+  for(auto i:arr){
+    temp.push_back(i);
+  }
+  int n = temp.size();
+  
+  for(int i = n ;i > 1 ; i--){
+    //find maxi withiin the range
+    int maxi = greatestt(temp,i);
+    
+    //desired
+    if(maxi != i - 1){
+      flipp(temp,maxi+1);
+      flipp(temp,i);
+    }
+  }
+  return temp;
+  
+  TC(O(Size of array((O(k)))))
+       N == K
+         O(n^2);
+  SC:O(1);
+}
+https://www.linkedin.com/in/arpit-tiwari-879166209/
+
+/*
+ATQ
+write a function flip
+and reverse the first k elements
+
+and then complete the funtion panncakesort
+
+//bubble sort can work
+
+// go with the topmost that is highest element
+//find it postions
+//use the funct flip
+ // full array (arr ,n);
+
+*/
