@@ -1,0 +1,95 @@
+#import <iostream>
+#import <string>
+#include<vector>
+
+using namespace std;
+
+int solve(int idx,string s,vector<int>&dp){
+  int n = s.size();
+  if(idx >= n){
+    return 1;
+  }
+  
+  if(s[idx] == '0')return 0;
+  
+  if(dp[idx] != -1)return dp[idx];
+  
+  int onedigit_ways = solve(idx+1,s,dp);
+  
+  int twodigit_ways = 0;
+  
+  if(idx + 1 < n){
+    int first_digit = s[idx] - '0';
+    int second_digit = s[idx + 1] - '0';
+    
+    int combo = first_digit * 10 + second_digit;
+    
+    if(combo <= 26){
+      twodigit_ways = solve(idx + 2,s,dp);
+    }
+  }
+  return dp[idx] = onedigit_ways + twodigit_ways;
+}
+
+int decodeVariations(const string& S)
+{
+	// your code goes here
+  int n = S.size();
+  vector<int>dp(n+1,-1);
+  return solve(0,S,dp);
+}
+
+//https://www.linkedin.com/in/arpit-tiwari-879166209/
+// 
+/*
+whether to take curr ind = 1 s[i] = '1' 
+  index > size() return 1;
+ 
+ if(s[i] == 0){
+   zero in start
+     return 0;
+   
+ }
+ */
+   /*
+   1260
+   
+   1
+   
+   12
+   
+   2
+   
+   26
+   
+   6
+   
+   60 np
+   
+   
+   
+cedcoss
+  onedigit
+  pass on recursive
+  two digit
+  {
+  
+    combo < =26
+    recurive
+    12
+    first digit = s[i] - '0'; 1
+    second_digit = s[i+1] - '0'; 2 
+    combo = first * 10 +  second ; 1 *10 +2 = 12
+    
+    if(combo <= 26){
+    recr(index+2,n,s,)
+    }
+  }
+  */
+//vector<int>dp(size,-1)
+ 
+
+int main() 
+{
+	return 0;
+}
