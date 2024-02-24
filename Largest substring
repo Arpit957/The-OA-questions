@@ -1,0 +1,47 @@
+//Return the length of the longest contiguous substring of s which occurs at least thrice, or -1 if no special substring occurs at least thrice.
+
+class Solution {
+public:
+    int maximumLength(string s) {
+        map<char,map<int,int>>mp;
+
+         char curr = s[0];
+         int n = s.size();
+
+         int count = 1;
+         int ans = -1;
+
+         for(int i = 1; i < n; i++){
+             if(s[i] == curr){
+                 count++;
+             }
+             else{
+                 int freq = count;
+
+                 for(int i = 1 ;i <=count ;i++){
+                     mp[curr][i]+=freq;
+                     freq--;
+
+                     if(mp[curr][i] >=3){
+                         ans = max(ans,i);
+                     }
+                 }
+                 curr = s[i];
+                 count = 1;
+             }
+            if(i == n - 1){
+                 int freq = count;
+
+                 for(int i = 1 ;i <=count ;i++){
+                     mp[curr][i]+=freq;
+                     freq--;
+
+                     if(mp[curr][i] >=3){
+                         ans = max(ans,i);
+                    }
+                 }
+              } 
+         }
+         return ans;
+    }
+};
