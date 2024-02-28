@@ -1,0 +1,29 @@
+#include <iostream>
+#include<vector>
+
+using namespace std;
+
+// Function to check if a number is perfect
+bool isPerfect(int num) {
+    int sum = 0;
+    for (int i = 1; i <= num / 2; ++i) {
+        if (num % i == 0) {
+            sum += i;
+        }
+    }
+    return sum == num;
+}
+
+int main() {
+    std::cout << "Perfect numbers from 1 to 200:" << std::endl;
+    vector<int>ans;
+    for (int i = 1; i <= 200; ++i) {
+        if (isPerfect(i)) {
+            ans.push_back(i);
+        }
+    }
+    for(auto i:ans){
+        cout<<i<<" ";
+    }
+    return 0;
+}
