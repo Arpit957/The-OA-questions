@@ -1,0 +1,29 @@
+//7132 == 7000 + 100 + 30 + 2
+
+#include <iostream>
+#include <cmath>
+#include <string>
+
+std::string expandedForm(int num) {
+    int numberOfDigits = static_cast<int>(std::floor(std::log10(num) + 1));
+    std::string result = "";
+    
+    while (numberOfDigits-- > 0) {
+        int divisor = static_cast<int>(std::pow(10, numberOfDigits));
+        int quotient = num / divisor;
+        num %= divisor;
+        int value = quotient * divisor;
+        
+        if (value != 0)
+            result += std::to_string(value) + (numberOfDigits != 0 ? "+" : "");
+    }
+    
+    return result;
+}
+
+int main() {
+    int num = 12345;
+    std::string expanded = expandedForm(num);
+    std::cout << "Expanded form of " << num << " is: " << expanded << std::endl;
+    return 0;
+}
