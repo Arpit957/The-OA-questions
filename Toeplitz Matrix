@@ -1,0 +1,63 @@
+#import <iostream>
+#import <vector>
+
+using namespace std;
+
+bool isToeplitz(const vector<vector<int>>& arr)
+{
+	// your code goes here
+  /*
+  2d vis(row,col , 0);
+  row and col
+    
+    temp = row,
+   tempc = col;
+  while(temp+1<row and tempc+1<col){
+    1, 2 3 4
+    5  1  2 3
+    6   1  2 
+  }
+  
+  first rows
+  {
+    row = 0 ; row < n; row++
+    
+  }
+   first cols{
+     col = 1; col < m;c++ 
+   }
+  */
+  
+  
+  int given_col = arr[0].size();
+  
+  for(int row = 0 ; row < given_row ; row++){
+      int r = row;
+      int c = 0;
+      int ele = arr[r][c];
+    
+    while(r+1 < given_row and c+1 < given_col){
+        if(arr[r+1][c+1] != ele)return 0;
+        r++;
+        c++;
+    }
+  }
+  
+  for(int col = 1 ; col < given_col ; col++){
+    int r = 0;
+    int c = col;
+    int ele = arr[r][c];
+    while(r+1 < given_row and c+1 < given_col){
+        if(arr[r+1][c+1] != ele)return 0;
+        r++;
+        c++;
+    }
+  }
+  
+  return 1;
+}
+
+int main() 
+{
+	return 0;
+}
