@@ -1,0 +1,65 @@
+#import <iostream>
+#import <string>
+#import <vector>
+#include<map>
+#include<queue>
+#include<set>
+using namespace std;
+
+int shortestWordEditPath(const string& source, const string& target, const vector<string>& words)
+{
+	// your code goes here
+  
+  
+  set<string>s;
+  for(auto i:words){
+    s.insert(i);
+  }
+  
+  queue<pair<int,string>>q;
+ // pair -- steps , result_string
+  
+  
+  q.push({0,source});
+  s.erase(source);
+  
+  while(!q.empty()){
+      int steps = q.front().first;
+      string prev_string = q.front().second;
+      q.pop();
+    
+      if(prev_string == target)return steps;
+    
+      int p_size = prev_string.size();
+    
+     for(int i = 0 ; i < p_size ; i++){
+        char original_word = prev_string[i];
+          for(char ch = 'a' ; ch <= 'z' ; ch++){
+               prev_string[i] = ch;
+              
+              //bit --- ait, cit, dit....
+              if(s.find(prev_string) != s.end()){
+                 q.push({steps+1,prev_string});
+                s.erase(prev_string);
+              }
+          }
+           prev_string[i] = original_word;
+     }
+  }
+  
+  return -1;
+  
+  
+  
+  
+  TC = n*(n*26) == n^2;
+  SC == set + queue == (n) + (n) = O(n);
+  
+  
+  
+}
+
+int main() 
+{
+	return 0;
+}
