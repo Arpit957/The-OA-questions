@@ -1,0 +1,14 @@
+int Solution::solve(int n, vector<int> &A) {
+        int sum=0,count=0,ans=0;
+    for(int i=0;i<n;i++) sum+=A[i];
+    if(sum%3!=0) return 0;
+    int target=sum/3;
+    sum=A[0];
+    if(sum==target) ++count;
+    for(int i=1;i<n-1;i++){
+        sum+=A[i];
+        if(2*target==sum) ans+=count;
+        if(sum==target) count++;
+    }
+    return ans;
+}
