@@ -1,0 +1,158 @@
+#include <iostream>
+#include <string>
+#include<vector>
+
+using namespace std;
+  	bool solve(string&s,string&p,int i,int j,int n,int m,vector<vector<int>>&dp)
+	{ 
+		if(i>=n and j>=m)
+           return true;  //this means we got our answer
+		if(j>=m) 
+           return false;//one string is finished fully,answer not found
+		if(dp[i][j] != -1) 
+           return dp[i][j];
+		bool sameHai = ((i < n) and ( s[i] == p[j] or p[j]=='.'));
+        //only condition to increment both i and j    
+
+   		if(j+1 < m and p[j+1] == '*')   
+		{
+            //here we have 2 choices
+            //1.skip curr char and move  j+2
+            //2.use it and if sameHai is true move forward (as '*' matches zero or more of the preceding element.) 
+			return dp[i][j] = solve(s,p,i,j+2,n,m,dp) or (sameHai and solve(s,p,i+1,j,n,m,dp));  
+        }
+		if(sameHai) 
+        return dp[i][j] = solve(s,p,i+1,j+1,n,m,dp);//we can only move forward if char matches or p[j] is ='.';
+
+        //else simple false
+		return dp[i][j] = false; 
+	}
+bool isMatch( const string &text, const string &pattern ) 
+{
+  int n = text.size(),m=pattern.size();
+  string t = text;
+  string p = pattern;
+		vector<vector<int>>dp(n+1,vector<int>(m+1,-1));
+		return solve(t,p,0,0,n,m,dp);
+  
+  // your code goes here
+  /*
+  int t_size = text.size();
+  int p_size = pattern.size();
+  
+  int count_dot = 0;
+  int count_star = 0;
+  
+  for(int i = 0 ; i < p_size ; i++){
+    if(pattern[i] == '.')count_dot++;
+    else if(pattern[i] == '*')count_star++;
+  }
+  
+  if(count_dot == 0 and count_star == 0){
+    
+    //full match allowerd
+    string temp_t = text;
+    string temp_p = pattern;
+    
+    sort(temp_t.begin(),temp_t.end());
+    sort(temp_p.begin(),temp_p.end());
+    
+    if(temp_t == temp_p)return 1;
+    
+    //diff match
+    
+    unordered_map<char,int>mp,mp2;
+    
+    for(int i = 0 ; i < t_size ; i++){
+      mp[text[i]]++;
+    }
+    
+     for(int i = 0 ; i < p_size ; i++){
+      mp2[pattern[i]]++;
+    }
+    
+    for(int i  = 0 ; i < t_size ; i ++){
+      char ch = text[i];
+      if(mp[ch] != mp2[ch])return 0;
+    }
+    
+  }
+  else{
+       for(int i = 0 ; i < t_size ; i++){
+         if(text[i]  == pattern[i])continue;
+         
+         if(text[i] != pattern[i]){
+           if(pattern[i] == '.'){
+             continue;
+           }
+           else{
+             if(pattern[i] == '*'){
+             
+             }
+             else{
+               return 0;
+             }
+           }
+         }
+     }
+  }
+  */
+}
+
+int main() {
+  return 0;
+}
+/*
+p = ab*c
+t = abbbbbbbbc 
+t = ac
+t = abc
+
+/*
+p = "acc." t = aacd  //false
+p =  accd   t = aacd
+     a - 1       a -2
+
+/*
+p = ab*  t = a // true
+  
+  p = ab*
+     p = abbb...
+     t = ab //true
+  
+  t = a //true
+  t = cv // true
+  
+  
+  p = ab*c  t= acd
+  
+  p = bbbdd  t = zzzrr //true
+  
+  p = bbd.  t = aacg //true
+  
+  p = aac t = aac  // true
+  
+  p = dddb t = cccx //true
+  
+  p = ssll t= sszz // false
+  */
+  /*
+    
+    Greedily
+    full match allowed
+    diff match allowed
+    partial match is not allowed
+    
+    if * or .
+    for .
+    only replaecable 1 char
+    for * 
+     depends on letter before * 
+     
+     ex  acd    ab*c
+         a   ==  a
+         c   !=  b
+         d    != * (_)
+         acd = abc
+    
+  */
