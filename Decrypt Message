@@ -1,0 +1,64 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+string decrypt( const string& word ) 
+{
+  // your code goes here
+  int to_sub = 1;
+  
+  int new_value;
+  
+  string ans;
+  
+  int n = word.size();
+  
+  for(int i = 0 ; i < n ; i++){
+    new_value = word[i];
+    //new_value = 110-99 = 11
+    new_value = new_value -  to_sub;
+    
+    while(new_value < 97){
+      new_value+=26;
+      // 11 + 
+    }
+    
+    ans+=char(new_value);
+    //c
+    
+    //100 110 111 116 113
+   // 111 - 110 = 11*x*26in the range
+    //99 
+    
+    //to_sub = 99
+    //1 + 99 
+     to_sub = word[i];
+    //100
+    
+  }
+  
+  return ans;
+  
+}
+
+int main() {
+  return 0;
+}
+/*
+word[i] = 'd';
+d = d - 1; == c;
+
+while(){
+  ch+=26;
+}
+
+//  d == d - 1 -> c == 99 > 97
+//  n = 110 - 99  == 11 < 97
+ 11 + 26 < 97
+   37 < 97 
+   37 +26 < 97
+   63+ 26 < 97
+   123 >89+ 26 > 97 
+         115
+*/
